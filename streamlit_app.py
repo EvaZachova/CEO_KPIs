@@ -15,6 +15,7 @@ logo_image = os.path.abspath("/home/appuser/app/static/keboola.png")
 logo_html = f'<div style="display: flex; justify-content: flex-end;"><img src="data:image/png;base64,{base64.b64encode(open(logo_image, "rb").read()).decode()}" style="width: 100px; margin-left: -10px;"></div>'
 st.markdown(f"{logo_html}", unsafe_allow_html=True)
 st.title("Interactive KPI Reporting")
+st.markdown(title["filters"],unsafe_allow_html=True)
 
 @st.cache_data()
 def read_df(table_path, index_col=None, date_col=None):
@@ -34,7 +35,6 @@ date_from_c, date_to_c = st.columns(2)
 df_shopify = read_df(SHOPIFY_TABLE_PATH, date_col=["date"])
 df_shopify.sort_values(by="date", inplace=True)
 
-st.markdown(title["filters"],unsafe_allow_html=True)
 with date_from_c:
     DFROM = st.date_input(
         "From",
