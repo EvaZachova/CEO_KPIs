@@ -48,7 +48,7 @@ class KpiComponent():
         ch = alt.Chart(self.subset).mark_line().encode(
             x='date',
             y='actual_value'
-        )
+        ).configure_axis(labelExpr=None) 
         return ch
         
     
