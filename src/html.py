@@ -1,5 +1,5 @@
 html_code = '''
-    <div style="display: flex; justify-content: center;">
+    <div style="display: flex; justify-content: center; margin:5% 0">
         <div style="width: 50%;text-align:left">
             <strong>Filters:</strong>
             <p></p>
