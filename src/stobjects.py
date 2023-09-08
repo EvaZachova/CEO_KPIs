@@ -46,9 +46,9 @@ class KpiComponent():
     
     def create_altair_chart(self):
         ch = alt.Chart(self.subset).mark_line().encode(
-            x='date',
-            y='actual_value'
-        ).configure_axis(labelExpr=None) 
+            x=alt.X("date", title=None),  # Set title to None to remove x-axis label
+            y=alt.Y("actual_value", title=None),
+        ).configure_axis(labelExpr="None") 
         return ch
         
     
