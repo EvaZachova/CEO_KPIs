@@ -11,6 +11,7 @@ import streamlit as st
 import numpy as np
 import altair as alt
 import src.notifications as ntf
+#from src.settings import jira_cli
 from src.settings import keboola_client
 from src.settings import DECIMALS
 
@@ -43,6 +44,13 @@ class KpiComponent():
             st.error("The date range selected does not fit within the data")
             st.stop()
     
+    def create_altair_chart(self):
+        ch = alt.Chart(self.subset).mark_line().encode(
+            x='date',
+            y='actual_value'
+        )
+        return ch
+    
     def set_up_message(self):
         base_msg = f"KPI metric: {self.kpi_name} (from {self.dfrom} to {self.dto})."
         base_msg = base_msg + f" Real value: {self.actual}, planned value: {self.last_planned}. "
@@ -57,6 +65,7 @@ class KpiComponent():
         ch = self.create_altair_chart()
         self.form.altair_chart(ch, use_container_width=True)
         slack = self.form.checkbox('Slack')
+        # jira = self.form.checkbox('Jira')
         with self.form.expander("Notification message"):
             notif = st.text_input(label="CEO comment", disabled=False)
             #slacknotif = st.text_input(label="Insert Slack Comment", disabled=False)
@@ -67,6 +76,6 @@ class KpiComponent():
             if slack:
                 value = ntf.send_slack_notification(self.client, self.base_msg + notif)
                 st.write(f"Slack notification status: table {value}")
-            if jira:
-                value = ntf.create_new_jira_issue(jira_cli, ntf.IssueType.TASK, self.base_msg + notif)
-                st.write(f"Jira notification status: {value}")
+            # if jira:
+            #     value = ntf.create_new_jira_issue(jira_cli, ntf.IssueType.TASK, self.base_msg + notif)
+            #     st.write(f"Jira notification status: {value}")
