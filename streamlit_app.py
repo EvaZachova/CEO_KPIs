@@ -6,9 +6,10 @@ import streamlit as st
 import base64
 from src.stobjects import KpiComponent
 from src.settings import SHOPIFY_TABLE_PATH
-from src.html import html_code
+from src.html import html_code,css_style,title
 
 st.set_page_config(layout="wide")
+st.markdown(css_style, unsafe_allow_html=True)
 
 logo_image = os.path.abspath("/home/appuser/app/static/keboola.png")
 logo_html = f'<div style="display: flex; justify-content: flex-end;"><img src="data:image/png;base64,{base64.b64encode(open(logo_image, "rb").read()).decode()}" style="width: 100px; margin-left: -10px;"></div>'
@@ -48,7 +49,7 @@ with date_to_c:
 DFROM = DFROM.isoformat()
 DTO = DTO.isoformat()
 
-st.markdown("Subheeader",unsafe_allow_html=True)
+st.markdown(title["statistics"],unsafe_allow_html=True)
 c_sales, c_orders, c_new_customers = st.columns(3)
 with c_sales:
     salesc = KpiComponent(df_shopify, "sales", np.sum, dto=DTO, dfrom=DFROM)
@@ -66,3 +67,15 @@ with c_avg_order:
 #    customersc = KpiComponent(df, "conversion_rate", np.sum, dto=DTO, dfrom=DFROM)
 
 st.write(html_code, unsafe_allow_html=True)
+st.markdown(f"""
+    <div style="display: flex; justify-content: flex-end;">
+        <div>
+            <p><strong>Version:</strong> 1.1</p>
+        </div>
+        <div style="margin-left: auto;">
+            <img src="data:image/png;base64,{base64.b64encode(open(logo_image, "rb").read()).decode()}" style="width: 100px;">
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
