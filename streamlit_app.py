@@ -34,6 +34,7 @@ date_from_c, date_to_c = st.columns(2)
 df_shopify = read_df(SHOPIFY_TABLE_PATH, date_col=["date"])
 df_shopify.sort_values(by="date", inplace=True)
 
+st.markdown(title["filters"],unsafe_allow_html=True)
 with date_from_c:
     DFROM = st.date_input(
         "From",
