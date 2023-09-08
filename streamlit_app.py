@@ -3,10 +3,10 @@ import pandas as pd
 import numpy as np
 import os
 import streamlit as st
+import base64
 from src.stobjects import KpiComponent
 from src.settings import SHOPIFY_TABLE_PATH
 from src.html import html_code
-import base64
 
 st.set_page_config(layout="wide")
 
