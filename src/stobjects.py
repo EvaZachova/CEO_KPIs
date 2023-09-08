@@ -45,7 +45,7 @@ class KpiComponent():
             st.stop()
     
     def create_altair_chart(self):
-        ch = alt.Chart(self.subset).mark_line()
+        ch = alt.Chart(self.subset).mark_line().encode()
         return ch
     
     def set_up_message(self):
