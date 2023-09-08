@@ -43,7 +43,10 @@ class KpiComponent():
         except IndexError:
             st.error("The date range selected does not fit within the data")
             st.stop()
-
+    
+    def create_altair_chart(self):
+        ch = alt.Chart(self.subset).mark_line()
+        return ch
     
     def set_up_message(self):
         base_msg = f"KPI metric: {self.kpi_name} (from {self.dfrom} to {self.dto})."
@@ -56,6 +59,8 @@ class KpiComponent():
         self.form = st.form(self.kpi_name)
         self.form.metric(self.kpi_name, f"{self.actual} (curr.)/ {self.last_planned} (plan)", np.round(
             self.actual - self.last_planned, decimals=DECIMALS))
+        ch = self.create_altair_chart()
+        self.form.altair_chart(ch, use_container_width=True)
         slack = self.form.checkbox('Slack')
         # jira = self.form.checkbox('Jira')
         with self.form.expander("Notification message"):
