@@ -23,5 +23,4 @@ KEBOOLA_TOKEN = st.secrets["kbc_token"]
 keboola_client = Client(KEBOOLA_STACK, KEBOOLA_TOKEN)
 
 # keboola settings
-DATA_TABLE_PATH = '/data/in/tables/data.csv'
 SHOPIFY_TABLE_PATH = '/data/in/tables/shopify_metrics.csv'
