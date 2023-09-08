@@ -36,7 +36,7 @@ df_shopify.sort_values(by="date", inplace=True)
 with date_from_c:
     DFROM = st.date_input(
         "From",
-        min(df.date.min(),df_shopify.date.min()) 
+        min(df_shopify.date.min()) 
     )
 
 with date_to_c:
@@ -48,6 +48,7 @@ with date_to_c:
 DFROM = DFROM.isoformat()
 DTO = DTO.isoformat()
 
+st.markdown("Subheeader",unsafe_allow_html=True)
 c_sales, c_orders, c_new_customers = st.columns(3)
 with c_sales:
     salesc = KpiComponent(df_shopify, "sales", np.sum, dto=DTO, dfrom=DFROM)
@@ -63,3 +64,5 @@ with c_avg_order:
     customersc = KpiComponent(df_shopify, "average order value", np.sum, dto=DTO, dfrom=DFROM)
 #with c_conv_rate:
 #    customersc = KpiComponent(df, "conversion_rate", np.sum, dto=DTO, dfrom=DFROM)
+
+st.write(html_code, unsafe_allow_html=True)
