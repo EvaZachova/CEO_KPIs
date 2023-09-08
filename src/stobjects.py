@@ -45,8 +45,12 @@ class KpiComponent():
             st.stop()
     
     def create_altair_chart(self):
-        ch = alt.Chart(self.subset).mark_line().encode()
+        ch = alt.Chart(self.subset).mark_line().encode(
+            x='date',
+            y='actual_value'
+        )
         return ch
+        
     
     def set_up_message(self):
         base_msg = f"KPI metric: {self.kpi_name} (from {self.dfrom} to {self.dto})."
