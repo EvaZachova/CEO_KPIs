@@ -6,6 +6,7 @@ import streamlit as st
 from src.stobjects import KpiComponent
 from src.settings import SHOPIFY_TABLE_PATH
 from src.html import html_code
+import base64
 
 st.set_page_config(layout="wide")
 
