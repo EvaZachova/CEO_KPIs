@@ -36,7 +36,7 @@ df_shopify.sort_values(by="date", inplace=True)
 with date_from_c:
     DFROM = st.date_input(
         "From",
-        min(df_shopify.date.min()) 
+        df_shopify.date.min() 
     )
 
 with date_to_c:
