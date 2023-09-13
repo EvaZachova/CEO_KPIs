@@ -3,9 +3,6 @@ html_code = '''
         <div style="width: 50%;text-align:left">
             <strong>Filters:</strong>
             <p></p>
-            <p>Gender: Passenger's gender (male, female).</p>
-            <p>Age: Passengers' age on the Titanic.</p>
-            <p>Survived: Indicates passenger survival status.</p>
         </div>
         <div style="width: 50%;text-align:left">
             <strong>Metrics:</strong>
