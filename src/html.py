@@ -10,9 +10,11 @@ html_code = '''
         <div style="width: 50%;text-align:left">
             <strong>Metrics:</strong>
             <p></p>
-            <p>Total: The total number of people or categorized by gender.</p>
-            <p>Average Age: The average age of all passengers or categorized by gender.</p>
-            <p>Total Survived: The total number of survivors among all passengers or categorized by gender.</p>
+            <p>Sales: Total turnover of paid orders in selected period.</p>
+            <p>Orders: Count of orders in selected period.</p>
+            <p>Average order value: Average amount spent by customers per transaction in selected period.</p>
+            <p>New customers: Number of customers with the first order in selected period.</p>
+            <p>Total customer: Total number of customers in selected period.</p>
         </div>
     </div>
     '''
